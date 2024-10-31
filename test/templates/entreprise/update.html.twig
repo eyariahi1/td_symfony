@@ -1,0 +1,31 @@
+{# templates/classe/update.html.twig #}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier la entreprise</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1>Modifier la Classe</h1>
+
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+
+    <form method="post">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn btn-primary">Mettre à jour</button>
+        {{ form_end(form) }}
+    </form>
+
+    <a href="{{ path('app_classe') }}" class="btn btn-secondary mt-3">Retour à la liste des classes</a>
+</div>
+
+</body>
+</html>

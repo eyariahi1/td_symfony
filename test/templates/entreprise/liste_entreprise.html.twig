@@ -1,0 +1,91 @@
+{# templates/authors/list.html.twig #}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d acceuil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .author {
+            background: white;
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .author img {
+            max-width: 100px;
+            margin-right: 20px;
+            border-radius: 50%;
+        }
+        .author-info {
+            flex-grow: 1;
+        }
+        .author-info h2 {
+            margin: 0 0 10px;
+            font-size: 1.5em;
+            color: #007bff;
+        }
+        .author-info p {
+            margin: 5px 0;
+            color: #666;
+        }
+        .author-info a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        .author-info a:hover {
+            text-decoration: underline;
+        }
+        .error-message {
+            color: red;
+            font-weight: bold;
+        }
+        .author-count {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>Liste des entreprise</h1>
+
+
+<h1>
+    {{ message }}
+</h1>
+
+
+{% for entreprise in entreprise %}
+<div class="entreprise">
+
+    <div class="classe-info">
+        <h2>{{ entreprise.nom|upper }}</h2>
+        <a href="">UPDATE</a>
+
+        <a href="{{ path('app_liste_employe', { id: entreprise.id }) }}">Details<a>
+                <a href="{{ path('app_delete_en', { id: entreprise.id }) }}">supprimer</a>            </div>
+
+
+</div>
+
+
+
+
+    {% endfor %}
+</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un employe</h1>
+
+
+
+    {{ form_start(form) }}
+    {{ form_row(form.nom) }}
+    {{ form_row(form.age) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.entreprise) }}
+
+
+    <button type="submit">Send</button>
+    {{ form_end(form) }}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+{% endblock %}

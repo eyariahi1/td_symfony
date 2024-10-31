@@ -1,0 +1,53 @@
+{# templates/etudiant/liste_etudiant.html.twig #}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Étudiants</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1>{{ message }}</h1>
+    <a href="{{ path('app_classe') }}" class="btn btn-secondary mt-3">Retour à la liste des classes</a>
+    <a href="{{ path('app_add_employe') }}" class="btn btn-secondary mt-3">ajouter un nouveau employe</a>
+
+
+
+    {# Vérifie si la classe existe avant d'afficher les étudiants #}
+    {% if entreprise %}
+    <h2>emloye de la entreprise : {{ entreprise.nom }}</h2>
+
+    {# Vérifie si des étudiants existent #}
+    {% if employe is not empty %}
+    <ul class="list-group">
+        {% for employe in employe %}
+        <li class="list-group-item">
+            <strong>ID :</strong> {{ employe.id }},
+            <strong>Nom :</strong> {{ employe.nom }},
+            <strong>email :</strong> {{ employe.email }}
+            <a href="{{ path('app_delete', { id: employe.id }) }}">supprimer</a>            </div>
+
+
+
+
+
+
+
+</li>
+{% endfor %}
+</ul>
+{% else %}
+    <div class="alert alert-warning">Aucun étudiant trouvé dans cette classe.</div>
+{% endif %}
+{% else %}
+    <div class="alert alert-danger">{{ message }}</div>
+{% endif %}
+
+</div>
+
+</body>
+</html>

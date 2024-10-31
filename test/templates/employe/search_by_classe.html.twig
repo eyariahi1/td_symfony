@@ -1,0 +1,53 @@
+{# templates/etudiant/search_by_classe.html.twig #}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche d'employe par entreprise</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1>Recherche d'employe par entreprise</h1>
+
+    <form method="get" action="{{ path('app_search_classe') }}">
+        <div class="form-group">
+            <label for="classeName">Nom de la entreprise</label>
+            <input type="text" class="form-control" id="classeName" name="classeName" value="{{ classeName }}" placeholder="Entrez le nom de la entreprise" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Rechercher</button>
+    </form>
+
+    {# Display flash messages for errors or success #}
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger mt-3">{{ message }}</div>
+    {% endfor %}
+
+    {% if employe is not empty %}
+        <h2 class="mt-5">employe trouvés dans la entreprise : {{ classeName }}</h2>
+        <ul class="list-group employemt-3">
+            {% for employe in employe %}
+                <li class="list-group-item">
+                    <strong>ID :</strong> {{ employe.id }},
+                    <strong>age :</strong> {{ employe.age }},
+                    <strong>Nom :</strong> {{ employe.nom }},
+                    <strong>Email :</strong> {{ employe.email }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% elseif classeName is not empty %}
+        <div class="alert alert-warning mt-3">Aucun employe trouvé pour la entreprise "{{ classeName }}"</div>
+    {% endif %}
+
+    <a href="{{ path('app_classe') }}" class="btn btn-secondary mt-3">retour ala liste des entreprise</a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
